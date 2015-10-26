@@ -1,0 +1,12 @@
+<html>
+<body>
+<form action = "create-post" method = "post">
+    <input type = "text" placeholder = "Write post" name = "postText" />
+    <button type = "submit">Create Post</button>
+</form>
+There are {{count}} posts!<br>
+{{#post}}
+{{text}}<br>
+{{/post}}
+</body>
+</html>
