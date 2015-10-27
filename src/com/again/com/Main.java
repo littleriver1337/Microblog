@@ -1,6 +1,7 @@
 package com.again.com;
 
 import spark.ModelAndView;
+import spark.Session;
 import spark.Spark;
 import spark.template.mustache.MustacheTemplateEngine;
 
@@ -9,14 +10,16 @@ import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
-        User user = new User();
         ArrayList<Post> posts = new ArrayList();
         Spark.staticFileLocation("/public");
         Spark.init();
+
         Spark.post(
                 "/create-account",
                 ((request, response) -> {
-                user.name = request.queryParams("username");
+                String user = request.queryParams("username");
+                Session session = request.session();
+                session.attribute("username", user);
                 response.redirect("/posts");
                 return ("");
             })
