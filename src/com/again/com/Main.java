@@ -20,7 +20,7 @@ public class Main {
                 String user = request.queryParams("username");
                 Session session = request.session();
                 session.attribute("username", user);
-                response.redirect("/posts");
+                response.redirect("/");
                 return ("");
             })
         );
@@ -30,15 +30,20 @@ public class Main {
                     Post post = new Post();
                     post.text = request.queryParams("postText");
                     posts.add(post);
-                    response.redirect("/posts");
+                    response.redirect("/");
                     return ("");
                 })
         );
         Spark.get(
-                "/posts",
+                "/",
                 ((request, response) -> {
+                    Session session = request.session();
+                    String user = session.attribute("username");
+                    if(user == null) {
+                        return new ModelAndView(new HashMap(), "index.html");
+                    }
                     HashMap m = new HashMap();
-                    m.put("count", posts.size());
+                    m.put("username", user);
                     m.put("post", posts);
                     return new ModelAndView(m, "posts.html");
                 }),
