@@ -58,9 +58,6 @@ public class Main {
                     try {
                         int idNum = Integer.valueOf(id);
                         posts.get(idNum - 1).text = edit;
-                        for (int i = 0; i < posts.size(); i++){
-                            posts.get(i).id = i + 1;
-                        }
                     }
                     catch (Exception e){
 
