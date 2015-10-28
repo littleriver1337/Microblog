@@ -1,10 +1,19 @@
 <html>
 <body>
 <form action = "create-post" method = "post">
-    <input type = "text" placeholder = "Write post" name = "postText" />
+    <input type = "text" placeholder = "Write post" name = "text" />
     <button type = "submit">Create Post</button>
 </form>
-There are {{count}} posts!<br>
+<form action = "delete-post" method = "post">
+    <input type = "number" placeholder= "Post #" name = "postid"/>
+    <button type = "submit">Delete</button>
+</form>
+<form action = "edit-post" method = "post">
+    <input type = "number" placeholder= "Post #" name = "postid"/>
+    <input type = "text" placeholder = "Edit Text" name = "editpost"/>
+    <button type = "submit">Submit</button>
+</form>
+There are {{name}} posts!<br>
 {{#post}}
 {{text}}<br>
 {{/post}}

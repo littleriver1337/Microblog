@@ -5,4 +5,5 @@ package com.again.com;
  */
 public class Post {
     String text;
+    int id;
 }
